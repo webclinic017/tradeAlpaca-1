@@ -11,8 +11,8 @@ from alpaca.data.timeframe import TimeFrame
 from HA import HAbars, HAbar
 from decision import decide
 
-apikey = 'PKW1HQ47CUXALPRYOB3N'
-secretkey = 'oGCX75TffItL75ydY4id0jRGZvg6ZVebvU5S5LgA'
+apikey = 'PKKJZYB9P6Q36H84YMXF'
+secretkey = 'hBnEAEiD1f67p6hM4DKkUBtixY01YulNWSuGHOyx'
 
 # create utc start of day time
 eastern = pytz.timezone('America/New_York')
