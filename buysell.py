@@ -72,6 +72,24 @@ def get_positions():
     global trading_client
     return trading_client.get_all_positions()
 
+def close_long_go_short():
+    pass
+
+def close_short_go_long():
+    pass
+
+def go_long():
+    pass
+
+def go_short():
+    pass
+
+def close_long():
+    pass
+
+def close_short():
+    pass
+
 
 # buy()
 # print(get_positions())

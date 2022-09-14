@@ -1,14 +1,6 @@
 position = 0
 from HA import HAbars, HAbar
-
-def decide(bar:HAbar):
-    global position
-    if position < 0:
-        process_short(bar)
-    elif position == 0:
-        process_open(bar)
-    else:
-        process_long(bar)
+from buysell import go_long, go_short, close_long, close_short, close_long_go_short, close_short_go_long
 
 def det_color(bar:HAbar) -> str:
     if bar.open < bar.close:
@@ -17,38 +9,56 @@ def det_color(bar:HAbar) -> str:
         return 'RED'
     return 'YELLOW'
 
-def process_short(bar:HAbar):
+def decide(bar:HAbar):
     c = det_color(bar)
     match c:
         case 'GREEN':
-            print(c, bar.timestamp)
+            process_green(bar)
         case 'RED':
-            print(c, bar.timestamp)
+            process_red(bar)
         case 'YELLOW':
-            print(c, bar.timestamp)
+            process_yellow(bar)
         case other:
-            raise Exception('short no color')
+            raise Exception('Color Problem', 'c =', c)
 
-def process_open(bar:HAbar):
-    c = det_color(bar)
-    match c:
-        case 'GREEN':
-            print(c, bar)
-        case 'RED':
-            print(c, bar)
-        case 'YELLOW':
-            print(c, bar)
-        case other:
-            raise Exception('open no color')
+def process_green(bar: HAbar):
+    if position < 0:
+        # close short and go long
+        close_short_go_long()
+    elif position == 0:
+        # go long
+        go_long()
+    elif position > 0:
+        # do nothing, stay long
+        pass
+    else:
+        raise Exception("Position value problem")
 
-def process_long(bar:HAbar):
-    c = det_color(bar)
-    match c:
-        case 'GREEN':
-            print(c, bar.timestamp)
-        case 'RED':
-            print(c, bar.timestamp)
-        case 'YELLOW':
-            print(c, bar.timestamp)
-        case other:
-            raise Exception('long no color')
+
+def process_red(bar: HAbar):
+    if position < 0:
+        # do nothing, stay short
+        pass
+    elif position == 0:
+        # go short
+        go_short()
+    elif position > 0:
+        # close long and go short
+        close_long_go_short()
+    else:
+        raise Exception("Position value problem")
+
+
+def process_yellow(bar: HAbar):
+    if position < 0:
+        # close short
+        close_short()
+    elif position == 0:
+        # stay zero position
+        pass
+    elif position > 0:
+        # close long
+        close_long()
+    else:
+        raise Exception("Position value problem")
+

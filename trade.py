@@ -18,7 +18,7 @@ secretkey = 'hBnEAEiD1f67p6hM4DKkUBtixY01YulNWSuGHOyx'
 eastern = pytz.timezone('America/New_York')
 utc = pytz.utc
 
-today = date(2022,9,12)
+today = date(2022,9,13)
 nyc_start_time = eastern.localize(datetime.combine(today,time(9, 30)))
 nyc_end_time = eastern.localize(datetime.combine(today,time(16, 00)))
 utc_start_time = nyc_start_time.astimezone(utc).strftime("%Y-%m-%d %H:%M:%S")
