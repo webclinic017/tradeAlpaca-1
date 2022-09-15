@@ -12,6 +12,8 @@ from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestBarRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
 
+import assets
+
 apikey = 'PKKJZYB9P6Q36H84YMXF'
 secretkey = 'hBnEAEiD1f67p6hM4DKkUBtixY01YulNWSuGHOyx'
 
@@ -79,7 +81,8 @@ def close_short_go_long():
     pass
 
 def go_long():
-    pass
+    assets.position = 1
+    print("Go to ", assets.position)
 
 def go_short():
     pass
